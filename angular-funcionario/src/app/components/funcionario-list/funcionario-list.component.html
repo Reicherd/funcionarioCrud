@@ -1,0 +1,41 @@
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Procura por Nome"
+          [(ngModel)]="nome"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="encontraPorNome()"
+          >
+            Procurar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Lista de Funcionários</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let funcionario of funcionarios; let i = index"
+          [class.active]="i == indexAtual"
+          (click)="selecionaFuncionario(funcionario, i)"
+        >
+            {{funcionario.nome}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <app-funcionario-edit
+        [selecionado]="true"
+        [funcionarioAtual]="funcionarioAtual"
+      ></app-funcionario-edit>
+    </div>
+  </div>
+  

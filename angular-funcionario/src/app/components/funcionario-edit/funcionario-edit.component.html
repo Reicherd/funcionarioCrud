@@ -1,0 +1,192 @@
+<div *ngIf="selecionado; else editable">
+    <div *ngIf="funcionarioAtual.id">
+      <h4>Funcionário</h4>
+      <div>
+        <label><strong>Matricula:</strong></label> {{funcionarioAtual.matricula}}
+      </div>
+      <div>
+        <label><strong>Nome:</strong></label>
+        {{funcionarioAtual.nome}}
+      </div>
+      <div>
+        <label><strong>Telefone:</strong></label>
+        {{funcionarioAtual.telefone}}
+      </div>
+      <button
+        class="btn btn-primary"
+        routerLink="/funcionario/{{ funcionarioAtual.id }}"
+      >
+        Editar
+      </button>
+    </div>
+  
+    <div *ngIf="!funcionarioAtual">
+      <br />
+      <p>Selecione um Funcionário</p>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <div *ngIf="funcionarioAtual.id" class="edit-form">
+      <h4>Funcionário</h4>
+      <form>
+        <div class="form-group">
+            <label for="matricula">Matricula</label>
+            <input
+              type="number"
+              class="form-control"
+              id="matricula"
+              disabled
+              [(ngModel)]="funcionarioAtual.matricula"
+              name="matricula"
+            />
+          </div>
+    
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input
+              class="form-control"
+              type="text"
+              id="nome"
+              required
+              [(ngModel)]="funcionarioAtual.nome"
+              name="nome"
+            />
+          </div>
+    
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input
+              class="form-control"
+              type="text"
+              id="email"
+              required
+              [(ngModel)]="funcionarioAtual.email"
+              name="email"
+            />
+          </div>
+    
+          <div class="form-group">
+            <label for="dataNascimento">Data Nascimento</label>
+            <input
+              type="date"
+              class="form-control"
+              id="dataNascimento"
+              required
+              [(ngModel)]="funcionarioAtual.dataNascimento"
+              name="dataNascimento"
+            />
+          </div>
+    
+          <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input
+              class="form-control"
+              type="number"
+              id="telefone"
+              required
+              [(ngModel)]="funcionarioAtual.telefone"
+              name="telefone"
+            />
+          </div>
+    
+          <div class="form-group">
+              <label for="genero">Gênero</label>
+              <select name="genero" id="genero" class="form-select" [(ngModel)]="funcionarioAtual.genero">
+                  <option *ngFor="let genero of generos" [ngValue]="genero.value">{{genero.name}}</option>
+              </select>
+          </div>
+    
+          <div class="form-group">
+              <label for="logradouro">Logradouro</label>
+              <input
+                class="form-control"
+                type="text"
+                id="logradouro"
+                required
+                [(ngModel)]="funcionarioEndereco.logradouro"
+                name="logradouro"
+              />
+          </div>
+          
+          <div class="form-group">
+              <label for="numero">Número</label>
+              <input
+                class="form-control"
+                type="number"
+                id="numero"
+                required
+                [(ngModel)]="funcionarioEndereco.numero"
+                name="numero"
+              />
+          </div>
+    
+          <div class="form-group">
+              <label for="complemento">Complemento</label>
+              <input
+                class="form-control"
+                type="text"
+                id="complemento"
+                required
+                [(ngModel)]="funcionarioEndereco.complemento"
+                name="complemento"
+              />
+          </div>
+  
+          <div class="form-group">
+              <label for="cep">CEP</label>
+              <input
+                class="form-control"
+                type="text"
+                id="cep"
+                required
+                [(ngModel)]="funcionarioEndereco.cep"
+                name="cep"
+              />
+          </div>
+  
+          <div class="form-group">
+              <label for="cidade">Cidade</label>
+              <input
+                class="form-control"
+                type="text"
+                id="cidade"
+                required
+                [(ngModel)]="funcionarioEndereco.cidade"
+                name="cidade"
+              />
+          </div>
+  
+          <div class="form-group">
+              <label for="bairro">Bairro</label>
+              <input
+                class="form-control"
+                type="text"
+                id="bairro"
+                required
+                [(ngModel)]="funcionarioEndereco.bairro"
+                name="bairro"
+              />
+          </div>
+      </form>
+  
+      <button class="btn btn-danger" (click)="delete()">
+        Remove
+      </button>
+  
+      <button
+        type="submit"
+        class="btn btn-success"
+        (click)="atualiza()"
+      >
+        Atualiza
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!funcionarioAtual.id">
+      <br />
+      <p>Não é Possível Acessar esse Funcionário</p>
+    </div>
+  </ng-template>
+  
